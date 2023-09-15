@@ -9,13 +9,13 @@ FROM
 WHERE
 DISTINCT
 LIMIT
-LIKE
-DATE COMPARISON < 
+DATE COMPARISON = 
 CONCATE OPERATOR ||
+AS COLUMN ALIAS
 */
 
 
--- 0. select all columns from the patient table
+-- 1. select all columns from the patient table
 -- always start off with a filter. LIMIT is used to restrict the number of rows returned.
 select  
     patient_id
@@ -30,63 +30,36 @@ from
     public.patient
 LIMIT 1000;
 
--- 1. Retrieve the first name, last name, and dob of all patients.
+-- 2. Retrieve the first name, last name, and dob of all patients.
 SELECT first_name, last_name, birth_dt
 FROM patient;
 
--- 2. List all unique facility names in the table.
+-- 3. List all unique facility names in the table.
 -- DISTINCT ensures that only unique values are shown.
 SELECT DISTINCT facility_id 
 FROM patient;
 
--- 3. List all unique reason_for_visits names in the table.
+-- 4. List all unique reason_for_visits names in the table.
 -- DISTINCT ensures that only unique values are shown.
 SELECT DISTINCT reason_for_visit 
 FROM patient;
 
--- 4. Find all patient details who are born on a date.
+-- 5. Display patient names (both first and last) in reverse order based on first name.
+-- Use concatenation operator for build a full_name
+-- full name is a column alias using the AS keyword
+SELECT first_name, last_name, first_name || ' ' || last_name as full_name
+FROM patient 
+
+-- 6. Find all patient details who are born on a date.
 SELECT *
 FROM patient 
 WHERE birth_dt = '1985-07-15';
 
--- 5. Display patient names (both first and last) in reverse alphabetical order based on first name.
-SELECT first_name, last_name 
-FROM patient 
-ORDER BY last_name DESC;
-
--- 6. Display patient names (both first and last) in reverse order based on first name.
--- Use concatenation operator for build a full_name
-SELECT first_name, last_name, first_name || ' ' || last_name as full_name
-FROM patient 
-ORDER BY last_name;
-
--- 7. List the details of patients whose first name starts with the letter "A".
--- LIKE is used with a pattern to search for specific strings.
-SELECT * 
-FROM patient 
-WHERE first_name LIKE 'A%';
-
--- 8. Find all patients who visited for the reason 'Checkup'.
+-- 7. Find all patients who visited for the reason 'Checkup'.
 -- chances are, you don't go to a hospital for a 'checkup'
 SELECT * 
 FROM patient 
 WHERE reason_for_visit = 'Checkup';
-
--- 9. Retrieve the account_number, first name, and last name of patients whose reason for visit contains the word 'fever'.
--- The LIKE operator paired with the '%' wildcard can find any string that contains a specific word or phrase.
-SELECT account_number, first_name, last_name
-FROM patient
-WHERE reason_for_visit LIKE '%fever%';
-
--- 10. Retrieve the account numbers and birth dates for patients born before January 1, 1990.
-SELECT account_number, birth_dt 
-FROM patient 
-WHERE birth_dt < '1990-01-01';
-
--- 11. Display details of patients whose last name ends with the letters "son".
-SELECT * 
-FROM patient 
-WHERE last_name LIKE '%son';
 
 
 /* *NOTE: avoid funning queries with a select *

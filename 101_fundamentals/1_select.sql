@@ -1,7 +1,13 @@
--- *NOTE: Postgres will require double quotes if a table name or column name has capitalization. 
--- best practice to keep all words lowercase
+/* *NOTE: Postgres will require double quotes if a table name or column name has capitalization. 
+* best practice to keep all words lowercase
+* 
+* *NOTE: more time is spent reading code than writing it, so formatting is important!
+* SELECT
+*   INDENT
+* FROM
+*   INDENT
+*/
 
--- *NOTE: more time is spent reading code than writing it, so formatting is important!
 
 /* KEYWORDS REVIEWED IN THIS SECTION
 SELECT

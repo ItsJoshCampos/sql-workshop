@@ -43,10 +43,10 @@ SELECT *
 FROM patient 
 WHERE birth_dt BETWEEN '1985-01-01' AND '1995-12-31' AND reason_for_visit LIKE '%pain%';
 
--- 7. List female patients with the last name 'Smith' or 'Jones' who visited for 'Checkup' or 'Consultation'.
+-- 7. List female patients with the last name 'Smith' or 'Jones' who visited for 'Allergic'.
 SELECT * 
 FROM patient 
-WHERE sex = 'F' AND (last_name = 'Smith' OR last_name = 'Jones') AND (reason_for_visit = 'Checkup' OR reason_for_visit = 'Consultation');
+WHERE sex = 'F' AND (last_name = 'Smith' OR last_name = 'Jones') AND (reason_for_visit = 'Allergic reaction');
 
 -- 8. List the details of patients whose first name starts with the letter "A".
 -- LIKE is used with a pattern to search for specific strings.
@@ -54,7 +54,7 @@ SELECT *
 FROM patient 
 WHERE first_name LIKE 'A%';
 
--- 9. Display details of patients whose last name ends with the letters "son".
+-- 9. Display details of patients who visited for a 'fever'.
 SELECT * 
 FROM patient 
-WHERE last_name LIKE '%son';
+WHERE reason_for_visit LIKE '%fever%';

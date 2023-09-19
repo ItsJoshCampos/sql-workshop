@@ -1,3 +1,7 @@
+-- recreate view: executive.vw_patient_current_physician
+
+-- why a view? we don't want to hand off this whole piece of code to run each time, create a view instead.
+
 
 WITH patient_physician_events as (
     select  
@@ -8,14 +12,15 @@ WITH patient_physician_events as (
         ,patevnt.event_dt_tm
         ,patevnt.location_id
         ,patevnt.room_bed
+        -- most recent event
         ,ROW_NUMBER() OVER(PARTITION BY patevnt.patient_id ORDER BY patevnt.event_dt_tm DESC) physician_rownumber
     from 
-        public.patient_event patevnt
+        public.patient_event patevnt -- all events
     inner join
-        executive.inhouse_patients ihp
+        executive.vw_inhouse_patients ihp -- inner join to filter only inhouse patients
         on ihp.patient_id = patevnt.patient_id
     where 
-        patevnt.physician_id is not null
+        patevnt.physician_id is not null --records with physician
 ),
 recent_patient_physician as (
     select  
@@ -29,6 +34,7 @@ recent_patient_physician as (
     from 
         patient_physician_events
     where 
+        -- filter to most recent event with physician identified
         physician_rownumber = 1
 )
 
@@ -36,10 +42,8 @@ select
     patphys.patient_id
     , phys.physician_name
     , phys.npi_number
-    --INTO executive.patient_current_physician
 from 
     recent_patient_physician patphys
 left join
     public.physician phys
     on phys.physician_id = patphys.physician_id
-

@@ -21,7 +21,7 @@ AS COLUMN ALIAS
 */
 
 
--- 1. select all columns from the patient table
+-- 0. select all columns from the patient table
 -- always start off with a filter. LIMIT is used to restrict the number of rows returned.
 select  
     patient_id
@@ -36,32 +36,32 @@ from
     public.patient
 LIMIT 1000;
 
--- 2. Retrieve the first name, last name, and dob of all patients.
+-- 1. Retrieve the first name, last name, and dob of all patients.
 SELECT first_name, last_name, birth_dt
 FROM patient;
 
--- 3. List all unique facility names in the table.
+-- 2. List all unique facility names in the table.
 -- DISTINCT ensures that only unique values are shown.
 SELECT DISTINCT facility_id 
 FROM patient;
 
--- 4. List all unique reason_for_visits names in the table.
+-- 3. List all unique reason_for_visits names in the table.
 -- DISTINCT ensures that only unique values are shown.
 SELECT DISTINCT reason_for_visit 
 FROM patient;
 
--- 5. Display patient names (both first and last) in reverse order based on first name.
+-- 4. Display patient names (both first and last) in reverse order based on first name.
 -- Use concatenation operator for build a full_name
 -- full name is a column alias using the AS keyword
 SELECT first_name, last_name, first_name || ' ' || last_name as full_name
 FROM patient 
 
--- 6. Find all patient details who are born on a date.
+-- 5. Find all patient details who are born on a date.
 SELECT *
 FROM patient 
 WHERE birth_dt = '1985-07-15';
 
--- 7. Find all patients who visited for the reason 'Checkup'.
+-- 6. Find all patients who visited for the reason 'Checkup'.
 -- chances are, you don't go to a hospital for a 'checkup'
 SELECT * 
 FROM patient 

@@ -29,6 +29,6 @@ LEFT JOIN
     public.location loc
     ON loc.location_id = patevt.location_id
 -- WHERE 
---     pat.patient_id = 500
+--     pat.patient_id = 1
 ORDER BY 
     patevt.event_dt_tm

@@ -33,7 +33,7 @@ SELECT patient_id, first_name, last_name, reason_for_visit,
        END AS visit_type
 FROM patient;
 
--- 6. If middle_name is NULL, replace it with 'No Middle Name Provided' using COALESCE.
+-- 4. If middle_name is NULL, replace it with 'No Middle Name Provided' using COALESCE.
 WITH NewPats AS (
        SELECT patient_id, first_name, NULL AS middle_name
        FROM patient
@@ -41,7 +41,7 @@ WITH NewPats AS (
 SELECT patient_id, first_name, COALESCE(middle_name, 'No Middle Name Provided') AS last_name
 FROM NewPats;
 
--- 10. Use a CASE statement to classify patients based on their account_number: <1000 as 'Low', between 1000 and 5000 as 'Medium', >5000 as 'High'.
+-- 5. Use a CASE statement to classify patients based on their account_number: <1000 as 'Low', between 1000 and 5000 as 'Medium', >5000 as 'High'.
 SELECT patient_id, first_name, last_name, account_number,
        CASE 
            WHEN CAST(account_number AS BIGINT) < 3000000000 THEN 'Low'

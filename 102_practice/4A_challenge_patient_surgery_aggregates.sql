@@ -58,7 +58,9 @@ from surgery_count
 -- bonus, add count by month and year
 
 select
-	calendar_day
+	surgery_year
+	, surgery_month
+	, calendar_day
 	, surgery_count_day
 	, sum(surgery_count_day) over (partition by surgery_year, surgery_month) as total_surgeries_month
 	, sum(surgery_count_day) over (partition by surgery_year) as total_surgeries_year

@@ -1,4 +1,7 @@
--- recreate view: executive.vw_patient_current_physician
+/* 
+    CHALLENGE
+    recreate view: executive.vw_patient_current_physician
+*/
 
 -- why a view? we don't want to hand off this whole piece of code to run each time, create a view instead.
 
@@ -47,3 +50,6 @@ from
 left join
     public.physician phys
     on phys.physician_id = patphys.physician_id
+
+
+-- rows returned match executive.vw_inhouse_patients view record count

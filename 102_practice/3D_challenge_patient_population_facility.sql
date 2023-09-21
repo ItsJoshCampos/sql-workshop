@@ -1,6 +1,10 @@
--- recreate view: executive.vw_patient_population_facility
+/* 
+    CHALLENGE
+    recreate view: executive.vw_patient_population_facility
+*/
 
 -- why a view? we don't want to hand off this whole piece of code to run each time, create a view instead.
+
 
 SELECT 
     fac.facility_name,
@@ -16,4 +20,4 @@ ORDER BY
     fac.facility_name;
 
 
--- sum add to the vw_inhouse_patients count
+-- sum add to the executive.vw_inhouse_patients count

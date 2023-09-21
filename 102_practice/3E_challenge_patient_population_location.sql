@@ -1,4 +1,7 @@
--- recreate view: executive.vw_patient_population_location
+/* 
+    CHALLENGE
+    recreate view: executive.vw_patient_population_location
+*/
 
 -- why a view? we don't want to hand off this whole piece of code to run each time, create a view instead.
 

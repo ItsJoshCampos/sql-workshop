@@ -1,6 +1,15 @@
--- recreate view: executive.inhouse_patients
+/* 
+    CHALLENGE
+    recreate view: executive.inhouse_patients using the executive.patient_recent_event Table 
+*/
 
--- table with most recent events is already created in executive.patient_recent_event
+-- why a view? we don't want to hand off this whole piece of code to run each time, create a view instead.
+
+SELECT *
+FROM 
+    executive.patient_recent_event
+
+-- table with most recent events orderis already created in executive.patient_recent_event
 /* 
     select 
         patient_id
@@ -20,5 +29,5 @@ SELECT
 FROM 
     executive.patient_recent_event
 WHERE 
-    patient_recent_event.last_event_rownumber = 1  -- most recent
+    patient_recent_event.last_event_rownumber = 1  -- most recent DESC ordered by event_dt_tm column
     AND patient_recent_event.event_id <> 5; -- not discharge event

@@ -1,3 +1,9 @@
+/* 
+    CHALLENGE
+    recreate view: executive.vw_surgery_year_month_day
+*/
+
+-- why a view? we don't want to hand off this whole piece of code to run each time, create a view instead.
 
 
 

@@ -1,10 +1,19 @@
+/* 
+       CASE: Condition based statement that will return the FIRST met condition.  
+       Met condition will return the THEN stetement.
+       If no condition is met, the ELSE statement is returned. 
+       If no ELSE condition is specified, NULL is returned.
+*/
+
+
+
 -- 0. Display facility IDs which have treated more male patients than female patients.
 SELECT facility_id, 
        SUM(CASE WHEN sex = 'M' THEN 1 ELSE 0 END) AS male_count, 
        SUM(CASE WHEN sex = 'F' THEN 1 ELSE 0 END) AS female_count
 FROM patient
 GROUP BY facility_id
-HAVING SUM(CASE WHEN sex = 'M' THEN 1 ELSE 0 END) > SUM(CASE WHEN sex = 'F' THEN 1 ELSE 0 END);
+--HAVING SUM(CASE WHEN sex = 'M' THEN 1 ELSE 0 END) > SUM(CASE WHEN sex = 'F' THEN 1 ELSE 0 END);
 
 -- 1. Classify patients based on their age.
 -- CASE statements allow for conditional logic in SQL queries.
@@ -16,11 +25,7 @@ SELECT patient_id, first_name, last_name, birth_dt,
        END AS age_category
 FROM patient;
 
--- 2. Cast the account_number as a VARCHAR and append it to the first_name.
-SELECT patient_id, first_name || ' (' || CAST(account_number AS VARCHAR) || ')' AS account_label
-FROM patient;
-
--- 3. Use CASE to label patients based on their reason for visit.'.
+-- 2. Use CASE to label patients based on their reason for visit.'.
 -- Clean this up?
 SELECT patient_id, first_name, last_name, reason_for_visit,
        CASE 
@@ -33,7 +38,7 @@ SELECT patient_id, first_name, last_name, reason_for_visit,
        END AS visit_type
 FROM patient;
 
--- 4. If middle_name is NULL, replace it with 'No Middle Name Provided' using COALESCE.
+-- 3. If middle_name is NULL, replace it with 'No Middle Name Provided' using COALESCE.
 WITH NewPats AS (
        SELECT patient_id, first_name, NULL AS middle_name
        FROM patient

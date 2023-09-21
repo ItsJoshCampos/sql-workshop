@@ -9,15 +9,16 @@
 */
 
 
-/* KEYWORDS REVIEWED IN THIS SECTION
-SELECT
-FROM
-WHERE
-DISTINCT
-LIMIT
-DATE COMPARISON = 
-CONCATE OPERATOR ||
-AS COLUMN ALIAS
+/* 
+    KEYWORDS REVIEWED IN THIS SECTION
+    SELECT
+    FROM
+    WHERE
+    DISTINCT
+    LIMIT
+    DATE COMPARISON = 
+    CONCATE OPERATOR ||
+    AS COLUMN ALIAS
 */
 
 
@@ -56,16 +57,21 @@ FROM patient;
 SELECT first_name, last_name, first_name || ' ' || last_name as full_name
 FROM patient 
 
--- 5. Find all patient details who are born on a date.
+-- 5. Cast the account_number as a VARCHAR and append it to the first_name.
+SELECT patient_id, first_name || ' (' || CAST(account_number AS VARCHAR) || ')' AS account_label
+FROM patient;
+
+-- 6. Find all patient details who are born on a date.
 SELECT *
 FROM patient 
 WHERE birth_dt = '1985-07-15';
 
--- 6. Find all patients who visited for the reason 'Checkup'.
+-- 7. Find all patients who visited for the reason 'Checkup'.
 -- chances are, you don't go to a hospital for a 'checkup'
 SELECT * 
 FROM patient 
 WHERE reason_for_visit = 'Checkup';
+
 
 
 /* *NOTE: avoid funning queries with a select *

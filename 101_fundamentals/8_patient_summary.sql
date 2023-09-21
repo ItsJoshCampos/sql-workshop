@@ -13,6 +13,12 @@ SELECT
     ,phys.npi_number
 FROM 
     public.patient pat
+/* 
+    INNER join to the inhouse patients to reduce result to only patients that are in a facility currently
+    - remove WHERE to run */
+-- INNER JOIN  
+--     executive.vw_inhouse_patients ihp
+--     ON pat.patient_id = ihp.patient_id
 LEFT JOIN
     public.facility fac
     ON fac.facility_id = pat.facility_id
@@ -28,7 +34,7 @@ LEFT JOIN
 LEFT JOIN
     public.location loc
     ON loc.location_id = patevt.location_id
--- WHERE 
---     pat.patient_id = 1
+WHERE 
+    pat.patient_id = 1
 ORDER BY 
     patevt.event_dt_tm

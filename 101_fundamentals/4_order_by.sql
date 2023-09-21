@@ -1,13 +1,8 @@
 
-/* KEYWORDS REVIEWED IN THIS SECTION
-SELECT
-FROM
-WHERE
-GROUP BY
-ORDER BY
-COUNT
-SUM
-DESC
+/* 
+    KEYWORDS REVIEWED IN THIS SECTION
+    ORDER BY: Sort the result in ASCending or DESCending order.
+    DESC
 */
 
 -- 0. Retrieve all patient names (first and last) and birth dates, ordered by birth date from oldest to newest.
@@ -21,7 +16,7 @@ SELECT facility_id, COUNT(patient_id) AS patient_count
 FROM patient 
 GROUP BY facility_id 
 HAVING COUNT(patient_id) > 5
-ORDER BY COUNT(patient_id) DESC 
+ORDER BY patient_count DESC  --why can i use alias in the order by?
 LIMIT 5;
 
 -- 2. List the details of male patients, ordered by last name in descending order.
@@ -35,7 +30,7 @@ SELECT reason_for_visit, COUNT(*) AS visit_count
 FROM patient
 GROUP BY reason_for_visit
 HAVING COUNT(*) > 3
-ORDER BY COUNT(*) DESC;
+ORDER BY visit_count DESC;
 
 -- 4. Display the first name, last name, and birth date of patients, ordered first by gender and then by birth date.
 SELECT first_name, last_name, sex, birth_dt 
@@ -60,7 +55,7 @@ ORDER BY last_name;
 SELECT reason_for_visit, COUNT(*) AS reason_count 
 FROM patient 
 GROUP BY reason_for_visit 
-ORDER BY COUNT(*) DESC 
+ORDER BY reason_count DESC 
 LIMIT 3;
 
 -- 8. List the names of patients born after 1990, ordered from youngest to oldest.

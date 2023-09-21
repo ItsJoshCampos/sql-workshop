@@ -1,4 +1,7 @@
--- recreate view: executive.vw_patient_current_location
+/* 
+    CHALLENGE
+    recreate view: executive.vw_patient_current_location
+*/
 
 -- why a view? we don't want to hand off this whole piece of code to run each time, create a view instead.
 
@@ -50,3 +53,4 @@ left join
     public.location loc
     on loc.location_id = patloc.location_id
 
+-- rows returned match executive.vw_inhouse_patients view record count

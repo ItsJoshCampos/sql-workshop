@@ -1,15 +1,12 @@
 
-/* KEYWORDS REVIEWED IN THIS SECTION
-SELECT
-FROM
-WHERE
-GROUP BY
-COUNT
-SUM
-DISTINCT
-MAX
-MIN
-AVG
+/* 
+       KEYWORDS REVIEWED IN THIS SECTION
+       GROUP BY: Group Rows that have the same values into a summary of the aggregate function specified.
+       COUNT
+       SUM
+       MAX
+       MIN
+       AVG
 */
 
 
@@ -87,6 +84,7 @@ WHERE (facility_id, cnt) IN (SELECT facility_id, MAX(cnt)
 
 --Another way to write it, with INNER JOIN
 --Option 1 has less lines of code, but this is easier to understand and test each step
+--JOIN are reviewed later
 WITH ReasonCounts AS (
   SELECT facility_id, reason_for_visit, COUNT(*) as cnt
   FROM patient
@@ -107,4 +105,4 @@ FROM ReasonCounts rc
 INNER JOIN
        MaxTest mt
        ON rc.facility_id = mt.facility_id
-       AND rc.cnt = MaxCnt
+       AND rc.cnt = MaxCnt  -- Join criteria based on the MAX count

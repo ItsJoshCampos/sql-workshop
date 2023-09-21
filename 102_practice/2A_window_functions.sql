@@ -1,6 +1,9 @@
 
 /* Window Functions : Enables data to be divided/ partitioned into a specified window
-    COUNT()
+	Window function vs GROUP BY is that WF keep the row detail in the result set.    
+	
+	COUNT()
+	SUM()
 */
 
 -- Our data set of all patient events from the start of the month until NOW
